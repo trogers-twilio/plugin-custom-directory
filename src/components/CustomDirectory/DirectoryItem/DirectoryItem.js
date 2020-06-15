@@ -24,7 +24,7 @@ class DirectoryItem extends React.Component {
         <UserCard
           className="Twilio-WorkerDirectory-UserCard"
           firstLine={this.props.item.name}
-          secondLine={this.props.item.id}
+          secondLine={this.props.item.number}
           isAvailable
           imageUrl=""
           large

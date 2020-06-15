@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Tab, templates, withTaskContext } from '@twilio/flex-ui';
+import { Tab, templates, withTaskContext, Actions } from '@twilio/flex-ui';
 import {
   TabContainer, InputContainer, StyledInput, ItemContainer
 } from './CustomDirectoryComponents';
@@ -7,10 +7,10 @@ import DirectoryItem from './DirectoryItem';
 
 const directoryEntries = [
   {
-    id: '12345',
+    number: '+15551234567',
     name: 'Allen Wentworth'
   }, {
-    id: '56789',
+    number: '+18885551212',
     name: 'Jack Harrington'
   }
 ];
@@ -38,6 +38,11 @@ class CustomDirectory extends React.Component {
     console.log('Transfer clicked');
     console.log('Transfer item:', item);
     console.log('Transfer payload:', payload);
+
+    const { mode } = payload;
+
+
+    Actions.invokeAction('HideDirectory');
   }
 
   render() {
