@@ -1,9 +1,6 @@
 import React from 'react';
-import { VERSION, TaskHelper } from '@twilio/flex-ui';
-import { FlexPlugin } from 'flex-plugin';
-
-import CustomTaskListContainer from './components/CustomTaskList/CustomTaskList.Container';
-import reducers, { namespace } from './states';
+import { VERSION } from '@twilio/flex-ui';
+import { FlexPlugin } from '@twilio/flex-plugin';
 
 import CustomDirectory from './components/CustomDirectory';
 
@@ -22,13 +19,6 @@ export default class CustomDirectoryPlugin extends FlexPlugin {
    * @param manager { import('@twilio/flex-ui').Manager }
    */
   init(flex, manager) {
-    // this.registerReducers(manager);
-
-    // const options = { sortOrder: -1 };
-    // flex.AgentDesktopView
-    //   .Panel1
-    //   .Content
-    //   .add(<CustomTaskListContainer key="demo-component" />, options);
 
     flex.WorkerDirectory.Tabs.Content.add(
       <flex.Tab
@@ -38,20 +28,5 @@ export default class CustomDirectoryPlugin extends FlexPlugin {
         <CustomDirectory />
       </flex.Tab>
     );
-  }
-
-  /**
-   * Registers the plugin reducers
-   *
-   * @param manager { Flex.Manager }
-   */
-  registerReducers(manager) {
-    if (!manager.store.addReducer) {
-      // eslint: disable-next-line
-      console.error(`You need FlexUI > 1.9.0 to use built-in redux; you are currently on ${VERSION}`);
-      return;
-    }
-
-    manager.store.addReducer(namespace, reducers);
   }
 }
