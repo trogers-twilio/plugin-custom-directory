@@ -1,7 +1,17 @@
 import * as React from "react";
-import { Tab, templates, withTaskContext, Actions } from '@twilio/flex-ui';
 import {
-  TabContainer, InputContainer, StyledInput, ItemContainer
+  Tab,
+  templates,
+  withTaskContext,
+  Actions,
+  Icon
+} from '@twilio/flex-ui';
+import {
+  InputContainer,
+  ItemContainer,
+  StyledInput,
+  StyledInputAdornment,
+  TabContainer,
 } from './CustomDirectoryComponents';
 import DirectoryItem from './DirectoryItem';
 
@@ -23,10 +33,15 @@ class CustomDirectory extends React.Component {
   filteredDirectory = () => {
     const { searchTerm } = this.state;
     return directoryEntries.filter(entry => {
+      if (!entry.name && !entry.number) {
+        return false;
+      }
       if (!searchTerm) {
         return true;
       }
-      return entry.name.includes(searchTerm);
+      return !!(entry.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        entry.number?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     })
   }
 
@@ -53,20 +68,23 @@ class CustomDirectory extends React.Component {
             key="custom-directory-input-field"
             onChange={this.onSearchInputChange}
             placeholder={templates.WorkerDirectorySearchPlaceholder()}
+            startAdornment={
+              <StyledInputAdornment position="start">
+                <Icon icon="Search" />
+              </StyledInputAdornment>
+            }
           />
         </InputContainer>
         <ItemContainer
           key="custom-directory-item-container"
-          className="Twilio-WorkerDirectory-Workers"
+          className="Twilio-WorkerDirectory-Queues"
           vertical
         >
-          {console.warn('Directory entries:', this.filteredDirectory())}
           {this.filteredDirectory().map(item => {
-            console.warn('Directory item:', item);
             return (
               <DirectoryItem
                 item={item}
-                key={item.id}
+                key={item.number}
                 onTransferClick={this.onTransferClick(item)}
               />
             );
