@@ -1,10 +1,9 @@
 import * as React from "react";
 import {
-  Tab,
+  Actions,
+  Icon,
   templates,
   withTaskContext,
-  Actions,
-  Icon
 } from '@twilio/flex-ui';
 import {
   InputContainer,

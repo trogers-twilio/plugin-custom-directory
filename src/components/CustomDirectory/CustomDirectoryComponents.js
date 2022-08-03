@@ -1,13 +1,7 @@
 import {
   FlexBox,
-  getBackgroundWithHoverCSS,
-  IconButton,
-  Animations,
-  FlexBoxProperties,
   FlexBoxColumn,
-  ThemeProps,
-  Theme,
-  StyledOtherComponent,
+  IconButton,
   styled
 } from '@twilio/flex-ui';
 import Input from '@material-ui/core/Input';
